@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculadora divertida: descubra quantos produtos você pode comprar com determinado valor. Escolha entre Brahma latão, Corote, caixa de bombom Garoto, iPhone do ano, HB20 ou Onyx.">
+  <meta name="keywords" content="calculadora, dinheiro, preços, Brahma, Corote, Garoto, iPhone, HB20, Onyx, compras">
+  <meta name="author" content="Igor">
+  <title>Quant'é isso?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    input[readonly] {
+      background: #eee;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Quant'é isso?</h1>
+  <div class="container">
+    <label for="produto">Escolha um produto:</label>
+    <select id="produto">
+      <option value="5">Brahma latão (R$5,00)</option>
+      <option value="4">Corote garrafinha (R$4,00)</option>
+      <option value="12">Caixa de bombom Garoto (R$12,00)</option>
+      <option value="7000">iPhone do ano (R$7.000,00)</option>
+      <option value="85000">HB20 (R$85.000,00)</option>
+      <option value="90000">Onyx (R$90.000,00)</option>
+    </select>
+
+    <label for="valor">Digite o valor (R$):</label>
+    <input type="number" id="valor" placeholder="Ex: 1000" step="0.01">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <label for="resultado">Resultado:</label>
+    <input type="text" id="resultado" readonly>
+  </div>
+
+  <script>
+    function calcular() {
+      const preco = parseFloat(document.getElementById("produto").value);
+      const valor = parseFloat(document.getElementById("valor").value);
+      const resultado = document.getElementById("resultado");
+
+      if (isNaN(valor) || valor <= 0) {
+        resultado.value = "Digite um valor válido!";
+        return;
+      }
+
+      const quantidade = Math.floor(valor / preco);
+      resultado.value = `Você pode comprar ${quantidade} unidade(s).`;
+    }
+  </script>
+</body>
+</html>
